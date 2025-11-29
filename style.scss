@@ -1,0 +1,225 @@
+
+@mixin glass-effect(
+  $bg-color: rgba(255, 255, 255, 0.08),
+  $border-color: rgba(255, 255, 255, 0.6),
+  $blur: 10px,
+  $border-width: 2px,
+  $shadow: 0 16px 32px rgba(0, 0, 0, 0.12)
+) {
+  background: $bg-color !important;
+//   border: $border-width solid transparent;
+//   box-shadow: 
+//     0 0 0 $border-width $border-color,
+//     $shadow;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+}
+
+@mixin ytmusic-glass(
+  $bg-color: rgba(77, 77, 77, 0.21),
+  $blur: 10px,
+  $border-radius: 999px
+) {
+  background: $bg-color !important;
+  border-radius: $border-radius !important;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+}
+
+@mixin button-glass(
+  $blur: 4px,
+  $border-radius: 2rem,
+  $bg-color: rgba(30, 30, 30, 0.1)
+) {
+  background: $bg-color !important;
+  border-radius: $border-radius !important;
+  box-shadow: 
+    0 6px 6px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  filter: saturate(120%) brightness(1.15);
+}
+
+// sidebar buttons
+ytmusic-guide-entry-renderer[active] tp-yt-paper-item.ytmusic-guide-entry-renderer {
+    @include ytmusic-glass;
+
+    padding-bottom: 3px;
+}
+
+tp-yt-paper-item.ytmusic-guide-entry-renderer:hover {
+    @include ytmusic-glass;
+
+    padding-bottom: 0px;
+}
+
+.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal {
+    @include ytmusic-glass;
+}
+
+ytmusic-app-layout[player-visible] > [slot=player-bar],
+ytmusic-app-layout[player-visible] #player-bar-background.ytmusic-app-layout {
+  @include ytmusic-glass;
+  position: fixed;
+  bottom: 15px;
+  left: 20px;
+  right: 20px;
+  width: auto;
+  height: auto;
+  transform: none !important;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+ytmusic-player-bar {
+  border-radius: 12px;
+  overflow: visible; 
+}
+
+// knob
+.slider-knob.tp-yt-paper-slider {
+    position: absolute;
+    left: 0;
+    top: var(--paper-slider-knob-top, 0);
+    margin-left: calc(-18px - var(--calculated-paper-slider-height) / 2);
+    width: var(--paper-slider-knob-size, calc(30px + var(--calculated-paper-slider-height)));
+    height: var(--paper-slider-knob-size, calc(29px + var(--calculated-paper-slider-height)));
+}
+
+#progress-bar.ytmusic-player-bar {
+  @include ytmusic-glass;
+
+  position: fixed !important;
+  cursor: pointer;
+  display: block;
+  
+  bottom: calc(var(--ytmusic-player-bar-height) + 1px) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: auto !important;
+  
+  width: 50% !important;
+  max-width: 500px !important;
+  
+  z-index: 9999 !important;
+  overflow: hidden !important;
+  
+  --paper-slider-knob-color: transparent;
+  --paper-slider-knob-start-color: transparent;
+  --paper-slider-knob-start-border-color: transparent;
+  --paper-slider-secondary-color: rgba(255, 255, 255, 0.1);
+  --paper-slider-container-color: rgba(255, 255, 255, 0.1);
+  --paper-slider-active-color: linear-gradient(to right, #f03 80%, #ff2791 100%);
+  
+  border-radius: 999px !important;
+  padding: 2px 32px 1px 2px !important;
+  height: auto !important;
+}
+
+#progress-bar.ytmusic-player-bar tp-yt-paper-slider {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+#progress-bar.ytmusic-player-bar {
+  .bar-container,
+  #sliderBar {
+    width: 100% !important;
+  }
+}
+
+// red progress bar
+#primaryProgress.tp-yt-paper-progress {
+    border-radius: 999px
+}
+
+#sliderBar.tp-yt-paper-slider {
+    border-radius: 999px !important;
+}
+
+// login dropdown
+.ytmusicMultiPageMenuRendererHost {
+    @include ytmusic-glass(rgba(30, 30, 30, 0.1), 10px, -border);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-right: 30px;
+}
+
+// side bar
+ytmusic-app[is-bauhaus-sidenav-enabled] #guide-wrapper.ytmusic-app {
+    @include glass-effect;
+}
+
+// burger menu
+ytmusic-nav-bar[is-bauhaus-sidenav-enabled] .left-content.ytmusic-nav-bar yt-icon-button.ytmusic-nav-bar {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+}
+
+tmusic-chip-cloud-renderer.ytmusic-section-list-renderer {
+    justify-content: center;
+    /* max-width: var(--ytmusic-content-width); */
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+// search bar
+ytmusic-search-box[is-bauhaus-sidenav-enabled]:not([opened]):not([has-query]) .search-box.ytmusic-search-box {
+    @include button-glass;
+}
+
+// search bar drowndown
+ytmusic-search-box[is-bauhaus-sidenav-enabled] #suggestion-list.ytmusic-search-box {
+    @include ytmusic-glass(rgba(30, 30, 30, 0.1), 10px, -border);
+    padding: 0;
+}
+ytmusic-search-box[is-bauhaus-sidenav-enabled] .search-box.ytmusic-search-box {
+    background-color: transparent !important;
+}
+
+ytmusic-search-box[is-bauhaus-sidenav-enabled][opened] .search-box.ytmusic-search-box {
+    background-color: none !important;
+}
+
+ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_LARGE_TRANSLUCENT_AND_SELECTED_WHITE] a.ytmusic-chip-cloud-chip-renderer {
+  @include ytmusic-glass;
+  opacity: 1 !important;
+  z-index: -1 !important;
+}
+
+ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_LARGE_TRANSLUCENT_AND_SELECTED_WHITE]:hover a.ytmusic-chip-cloud-chip-renderer:hover {
+    color: #fff !important;
+}
+
+.yt-icon-button {
+  z-index: -1 !important;
+}
+
+ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_LARGE_TRANSLUCENT_AND_SELECTED_WHITE][is-selected]:not(.iron-selected) a.ytmusic-chip-cloud-chip-renderer {
+  color: #fff !important;
+}
+
+ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_LARGE_TRANSLUCENT_AND_SELECTED_WHITE] a.ytmusic-chip-cloud-chip-renderer {
+  color: #c3c3c3 !important;
+  opacity: 1 !important;
+}
+
+ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_LARGE_TRANSLUCENT_AND_SELECTED_WHITE] {
+  padding: 12px 0 12px !important;
+}
+
+#chips.ytmusic-chip-cloud-renderer {
+  @include ytmusic-glass;
+  opacity: 1 !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
