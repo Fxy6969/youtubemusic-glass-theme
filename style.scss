@@ -191,7 +191,7 @@ ytmusic-player-bar {
 
 // login dropdown
 .ytmusicMultiPageMenuRendererHost {
-  @include ytmusic-glass(rgba(30, 30, 30, 0.1), 10px, -border);
+  @include ytmusic-glass(rgba(0, 0, 0, 0.4), 10px, -border);
   border: 1px solid rgba(255, 255, 255, 0.1);
   margin-right: 30px;
 }
@@ -340,9 +340,14 @@ ytmusic-player-bar .play-pause-button.ytmusic-player-bar {
     translate: none !important;
   }
 }
-#right-controls {
+#right-controls, .middle-controls-buttons {
   --yt-icon-button-icon-height: $playerIconSize - 4px;
   --yt-icon-button-icon-width: $playerIconSize - 4px;
+  .ytIconWrapperHost {
+    padding: 2px;
+    height: var(--yt-icon-button-icon-height)!important;
+    width: var(--yt-icon-button-icon-width)!important;
+  }
 }
 button.yt-icon-button>yt-icon {
   height: $playerIconSize - 4px!important;
@@ -361,22 +366,20 @@ button.yt-icon-button>yt-icon {
 }
 
 ytmusic-app-layout[player-page-open] #nav-bar-background.ytmusic-app-layout,
-ytmusic-app-layout.content-scrolled #nav-bar-background.ytmusic-app-layout,
-ytmusic-app-layout.content-scrolled #nav-bar-divider.ytmusic-app-layout,
 ytmusic-app-layout[is-bauhaus-sidenav-enabled][player-page-open] #mini-guide-background.ytmusic-app-layout {
   opacity: .1 !important;
+  transition-delay: 500ms;
 }
 
 tp-yt-paper-dialog,
 tp-yt-paper-listbox.ytmusic-menu-popup-renderer {
-  @include ytmusic-glass;
-  border-radius: 8px !important;
+  @include ytmusic-glass(rgba(0, 0, 0, 0.4), 10px, 8px);
 }
 
 ytmusic-chip-cloud-chip-renderer.ytmusic-chip-cloud-renderer {
   margin: 0 6px !important;
 }
-// Venipa/ytmdestop2 blurred thumbnail implementation using css vars
+
 ytmusic-player-page:not([is-mweb-modernization-enabled]) .content.ytmusic-player-page:before {
   content: "";
   background-image: var(--ytmd-thumbnail-url);
