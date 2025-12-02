@@ -71,25 +71,32 @@ ytmusic-app-layout[player-visible] #player-bar-background.ytmusic-app-layout {
 }
 
 ytmusic-app:not([guide-collapsed]) {
+  ytmusic-app-layout[player-visible]:not([player-fullscreened]) {
 
-  ytmusic-app-layout[player-visible]>[slot=player-bar],
-  ytmusic-app-layout[player-visible] #player-bar-background.ytmusic-app-layout {
-    left: calc(var(--ytmusic-guide-width) + 20px);
+    &>[slot=player-bar],
+    #player-bar-background.ytmusic-app-layout {
+      left: calc(var(--ytmusic-guide-width) + 20px);
+    }
   }
+
 }
+
 $collapsedNavItemSize: 48px;
+
 ytmusic-nav-bar {
- &[guide-collapsed] {
-  #guide-button {
-    flex-shrink: 0;
+  &[guide-collapsed] {
+    #guide-button {
+      flex-shrink: 0;
+    }
   }
- }
 }
+
 ytmusic-guide-renderer {
   height: 100% !important;
 
   // hide subtitle from collapsed sidebar
   $collapsedNavItemSize: 48px;
+
   &[is-collapsed] {
     #items {
       display: flex;
@@ -97,30 +104,35 @@ ytmusic-guide-renderer {
       align-items: center;
       justify-content: center;
       margin-left: 4px;
-      padding-bottom: 16px!important;
+      padding-bottom: 16px !important;
       gap: 0px;
-      & > ytmusic-guide-entry-renderer {
-        padding: 0!important;
+
+      &>ytmusic-guide-entry-renderer {
+        padding: 0 !important;
+
         tp-yt-paper-item.ytmusic-guide-entry-renderer {
           display: flex;
           align-items: center;
           justify-content: center;
-          height: $collapsedNavItemSize!important;
-          width: $collapsedNavItemSize!important;
-          padding: 0!important;
+          height: $collapsedNavItemSize !important;
+          width: $collapsedNavItemSize !important;
+          padding: 0 !important;
         }
       }
     }
+
     #guide-button {
-      height: $collapsedNavItemSize!important;
-      width: $collapsedNavItemSize!important;
+      height: $collapsedNavItemSize !important;
+      width: $collapsedNavItemSize !important;
       flex-shrink: 0;
     }
+
     .guide-icon {
-      margin: 0!important;
+      margin: 0 !important;
     }
+
     .title-column {
-      display: none!important;
+      display: none !important;
     }
   }
 }
@@ -153,18 +165,43 @@ ytmusic-player-bar {
   $progressBarHeight: 2px;
   padding: $progressBarHeight 32px $progressBarHeight 2px !important;
   width: calc(100% - 64px) !important;
-  top: $progressBarHeight!important;
+  bottom: 32px;
+  top: unset !important;
   display: flex;
   flex-direction: column;
   margin: 0 32px !important;
   position: relative;
   will-change: transform;
-  &:hover, &[focused] {
-    top: $progressBarHeight + 1px!important;
+
+  &:hover,
+  &[focused] {
+    top: unset !important;
   }
-  #progressContainer.tp-yt-paper-progress, .indeterminate.tp-yt-paper-progress::after {
-    height: $progressBarHeight!important;
+
+  #progressContainer.tp-yt-paper-progress,
+  .indeterminate.tp-yt-paper-progress::after {
+    height: $progressBarHeight !important;
   }
+
+  #sliderBar.tp-yt-paper-slider {
+    padding: 15px 0 4px 0 !important;
+  }
+
+  #sliderContainer.tp-yt-paper-slider {
+    height: 19px;
+  }
+}
+ytmusic-app-layout[player-fullscreened] #progress-bar.ytmusic-player-bar {
+  bottom: 48px;
+  padding-right: 48px !important;
+  width: calc(100% - 64px - 48px) !important;
+}
+
+#right-controls {
+  #sliderBar.tp-yt-paper-slider {
+    padding: 15px 0 4px 0 !important;
+  }
+
 }
 
 #progress-bar.ytmusic-player-bar tp-yt-paper-slider {
@@ -270,18 +307,21 @@ ytmusic-chip-cloud-chip-renderer[chip-style=STYLE_LARGE_TRANSLUCENT_AND_SELECTED
   padding-left: 12px !important;
   padding-right: 12px !important;
 }
+
 #steering-chips {
   display: flex;
   align-items: center;
+
   iron-selector {
-    min-height: 52px!important;
+    min-height: 52px !important;
     display: flex;
     align-items: center;
     padding-bottom: 0px;
     overflow: overlay;
+
     .ytmusic-chip-cloud-chip-renderer {
-      & > a {
-        border-radius: 999px!important;
+      &>a {
+        border-radius: 999px !important;
       }
     }
   }
@@ -340,20 +380,25 @@ ytmusic-player-bar .play-pause-button.ytmusic-player-bar {
     translate: none !important;
   }
 }
-#right-controls, .middle-controls-buttons {
+
+#right-controls,
+.middle-controls-buttons {
   --yt-icon-button-icon-height: $playerIconSize - 4px;
   --yt-icon-button-icon-width: $playerIconSize - 4px;
+
   .ytIconWrapperHost {
     padding: 2px;
-    height: var(--yt-icon-button-icon-height)!important;
-    width: var(--yt-icon-button-icon-width)!important;
+    height: var(--yt-icon-button-icon-height) !important;
+    width: var(--yt-icon-button-icon-width) !important;
   }
 }
+
 button.yt-icon-button>yt-icon {
-  height: $playerIconSize - 4px!important;
-  width: $playerIconSize - 4px!important;
+  height: $playerIconSize - 4px !important;
+  width: $playerIconSize - 4px !important;
+
   svg {
-    stroke-width: 1px!important;
+    stroke-width: 1px !important;
   }
 }
 
@@ -380,6 +425,26 @@ ytmusic-chip-cloud-chip-renderer.ytmusic-chip-cloud-renderer {
   margin: 0 6px !important;
 }
 
+ytmusic-av-toggle {
+  .av-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    padding: 6px 8px;
+
+    &>.ytmusic-av-toggle {
+      @include ytmusic-glass;
+      opacity: 0.5 !important;
+
+      &[aria-pressed="true"] {
+        opacity: 1 !important;
+      }
+    }
+  }
+}
+// Venipa/ytmdesktop2 blurred thumbnail implementation by using css variables
 ytmusic-player-page:not([is-mweb-modernization-enabled]) .content.ytmusic-player-page:before {
   content: "";
   background-image: var(--ytmd-thumbnail-url);
@@ -395,9 +460,9 @@ ytmusic-player-page:not([is-mweb-modernization-enabled]) .content.ytmusic-player
   overflow: hidden;
   transform: translate3d(0, 0, 1px) scale(1.1);
   position: absolute;
-  top: 0;
+  top: -12px;
   left: calc(var(--ytmusic-guide-width) * -1);
-  width: calc(100% + var(--ytmusic-guide-width));
-  height: 100%;
+  right: calc(var(--ytmusic-guide-width) * -1);
+  bottom: -20px;
   z-index: -1;
 }
